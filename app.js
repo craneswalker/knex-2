@@ -3,7 +3,13 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const app = express();
 
+const port = parseInt(process.env.PORT || 3000);
+
 const coffees = require("./routes/coffees");
+
+app.listen(port)
+  .on('error',     console.error.bind(console))
+  .on('listening', console.log.bind(console, 'Listening on ' + port));
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
